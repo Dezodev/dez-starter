@@ -101,6 +101,7 @@ function display_post_meta_info() {
 // Add page slug to body class, love this - Credit: Starkers Wordpress Theme
 function add_slug_to_body_class($classes) {
     global $post;
+
     if (is_home()) {
         $key = array_search('blog', $classes);
         if ($key > -1) {
@@ -110,6 +111,10 @@ function add_slug_to_body_class($classes) {
         $classes[] = sanitize_html_class($post->post_name);
     } elseif (is_singular()) {
         $classes[] = sanitize_html_class($post->post_name);
+    }
+
+    if (is_archive()) {
+        $classes[] = 'outside-title-page';
     }
 
     return $classes;
@@ -123,8 +128,8 @@ if (function_exists('register_sidebar')) {
         'name' => __('Widget Area 1', 'html5blank'),
         'description' => __('Description for this widget-area...', 'html5blank'),
         'id' => 'widget-area-1',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
-        'after_widget' => '</div>',
+        'before_widget' => '<div id="%1$s" class="card card-mb %2$s"><div class="card-body">',
+        'after_widget' => '</div></div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
     ));

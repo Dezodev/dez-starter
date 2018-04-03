@@ -1,31 +1,34 @@
 <?php get_header(); ?>
+<div class="card">
+	<div class="card-body">
+		<main role="main">
 
-	<main role="main">
+			<h1 class="text-center"><?php the_title(); ?></h1>
 
-		<h1><?php the_title(); ?></h1>
+			<?php
+			if (have_posts()):
+				while (have_posts()) : the_post(); ?>
 
-		<?php
-		if (have_posts()):
-			while (have_posts()) : the_post(); ?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<?php the_content(); ?>
 
-				<?php the_content(); ?>
+					<?php comments_template( '', true ); // Remove if you don't want comments ?>
 
-				<?php comments_template( '', true ); // Remove if you don't want comments ?>
+					<br class="clear">
 
-				<br class="clear">
+					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-light'); ?>
 
-				<?php edit_post_link(); ?>
+				</article>
 
-			</article>
-
-		<?php
-			endwhile;
-		else:
-			echo '<h2>'. _e( 'Sorry, nothing to display.', 'html5blank' ) . '</h2>';
-		endif; ?>
+				<?php
+				endwhile;
+			else:
+				echo '<p class="lead">'. _e( 'Sorry, nothing to display.', 'html5blank' ) . '</p>';
+			endif; ?>
 	</main>
+	</div>
+</div>
 
 <?php get_sidebar(); ?>
 

@@ -2,7 +2,7 @@
 
 <aside id="secondary" class="col-sm-4">
 
-	<div class="card">
+	<div class="card card-mb">
 		<div class="card-body">
 			<?php get_template_part('searchform'); ?>
 		</div>
