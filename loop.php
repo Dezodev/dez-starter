@@ -1,28 +1,33 @@
 <?php
 if (have_posts()):
-	while (have_posts()) : the_post(); ?>
+	while (have_posts()) : the_post();
+		$this_title = get_the_title();
+?>
 
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div class="card">
+			<div class="card-body">
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
-				</a>
-			<?php endif; ?>
+					<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
+						<a href="<?php the_permalink(); ?>" title="<?php echo $this_title; ?>">
+							<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
+						</a>
+					<?php endif; ?>
 
-			<h2>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-			</h2>
+					<h2 class="post-title text-center">
+						<a href="<?php the_permalink(); ?>" title="<?php echo $this_title; ?>"><?php echo $this_title; ?></a>
+					</h2>
 
-			<span class="date"><?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?></span>
-			<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-			<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
+					<?php display_post_meta_info() ?>
 
-			<?php the_excerpt(); ?>
+					<?php the_excerpt(); ?>
 
-			<?php edit_post_link(); ?>
+					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-light'); ?>
 
-		</article>
+				</article>
+			</div>
+		</div>
+
 
 <?php
 	endwhile;

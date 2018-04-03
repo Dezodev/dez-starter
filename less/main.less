@@ -1,0 +1,121 @@
+// out: ../css/main.css, compress: true
+
+/**
+ * Theme main styles
+ *
+ *  Author: DezoDev | @dezodev
+ *  URL: http://dezodev.tk/
+ */
+
+
+/* General
+**=====================================*/
+
+body {
+    background-color: #efefef; color:#444;
+}
+img { max-width: 100%; }
+
+/* Icons */
+.feather {
+    width: 1em; height: 1em; vertical-align: text-bottom;
+
+    .post-meta-infos & {
+        margin-right: 2px;
+    }
+}
+
+/* Border radius */
+.card, .form-control, .btn, .dropdown-menu { border-radius: 2px; }
+
+/* Header
+**=====================================*/
+
+#header {
+    .navbar {
+        background-color: #fff; border-bottom: 1px solid #ddd;
+    }
+
+    margin-bottom: 60px;
+}
+
+
+/* Footer
+**=====================================*/
+
+#footer {
+    background-color: #444; margin-top: 60px; color: #fff;
+    padding: 15px 0;
+
+    p { margin-bottom: 0; }
+}
+
+/* Misc
+**=====================================*/
+
+::selection {
+	background:#04A4CC; color:#fff; text-shadow:none;
+}
+::-webkit-selection {
+	background:#04A4CC; color:#fff; text-shadow:none;
+}
+::-moz-selection {
+	background:#04A4CC; color:#fff; text-shadow:none;
+}
+
+/* WordPress
+**=====================================*/
+
+.alignnone {
+	margin:5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+	display:block; margin:5px auto 5px auto;
+}
+
+.alignright {
+	float:right; margin:5px 0 20px 20px;
+}
+
+.alignleft {
+	float:left; margin:5px 20px 20px 0;
+}
+
+a img {
+    &.alignright {
+        float:right; margin:5px 0 20px 20px;
+    }
+    &.alignnone {
+        margin:5px 20px 20px 0;
+    }
+    &.alignleft {
+        float:left; margin:5px 20px 20px 0;
+    }
+    &.aligncenter {
+        display:block; margin-left:auto; margin-right:auto;
+    }
+}
+
+.wp-caption {
+	background:#FFF; border:1px solid #F0F0F0; max-width:96%;
+	padding:5px 3px 10px; text-align:center;
+
+    &.alignnone { margin:5px 20px 20px 0; }
+    &.alignleft { margin:5px 20px 20px 0; }
+    &.alignright { margin:5px 0 20px 20px; }
+
+    img {
+        border:0 none; height:auto; margin:0; max-width:98.5%;
+        padding:0; width:auto;
+    }
+}
+
+.wp-caption .wp-caption-text,
+.gallery-caption {
+	font-size:11px; line-height:17px; margin:0; padding:0 4px 5px;
+}
+
+.sticky { }
+.bypostauthor { }

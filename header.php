@@ -12,16 +12,26 @@
 </head>
 <body <?php body_class(); ?>>
 
-	<header class="header bg-dark">
-		<div class="container">
-			<div class="logo">
-				<a href="<?php echo home_url(); ?>">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo" class="logo-img">
-				</a>
-			</div>
+	<header id="header">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container">
 
-			<nav class="nav" role="navigation">
-				<?php dezo_nav(); ?>
-			</nav>
-		</div>
+				<a class="navbar-brand" href="<?php echo home_url(); ?>">
+					<?php bloginfo('name') ?>
+				</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="ml-auto">
+					<?php dezo_nav(); ?>
+				</div>
+
+			</div>
+		</nav>
 	</header>
+
+	<div class="container">
+		<div class="row">
+			<div id="primary" class="col-sm">

@@ -1,13 +1,13 @@
-<aside class="sidebar" role="complementary">
+</div> <!-- primary -->
 
-	<?php get_template_part('searchform'); ?>
+<aside id="secondary" class="col-sm-4">
 
-	<div class="sidebar-widget">
-		<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-1')) ?>
+	<div class="card">
+		<div class="card-body">
+			<?php get_template_part('searchform'); ?>
+		</div>
 	</div>
 
-	<div class="sidebar-widget">
-		<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-2')) ?>
-	</div>
+	<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-1')) ?>
 
-</aside>
+</aside> <!-- secondary -->
