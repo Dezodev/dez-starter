@@ -167,6 +167,9 @@ function enable_threaded_comments() {
 }
 add_action('get_header', 'enable_threaded_comments');
 
+/* Comments
+**=====================================*/
+
 /* Optimizations
 **=====================================*/
 

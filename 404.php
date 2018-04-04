@@ -1,8 +1,8 @@
 <?php
 global $DEZ_no_sidebar;
-$DEZ_no_sidebar = true
-?>
-<?php get_header(); ?>
+$DEZ_no_sidebar = true;
+
+get_header(); ?>
 
 <main role="main">
 	<h1><?php _e( 'Page not found', 'html5blank' ); ?></h1>

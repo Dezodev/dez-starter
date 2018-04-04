@@ -1,19 +1,17 @@
 <?php get_header(); ?>
-<div class="card">
-	<div class="card-body">
-		<main role="main">
-
-			<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+	<div class="card">
+		<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
+			<?php the_post_thumbnail('large', [
+				'class' => 'card-img-top',
+			]); ?>
+		<?php endif; ?>
+		<div class="card-body">
+			<main role="main">
 
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-					<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-							<?php the_post_thumbnail(); // Fullsize image for the single post ?>
-						</a>
-					<?php endif; ?>
-
-					<h1 class="text-center">
+					<h1 class="post-title">
 						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
 					</h1>
 
@@ -21,9 +19,9 @@
 
 					<?php the_content(); // Dynamic Content ?>
 
-					<?php the_tags( __( 'Tags: ', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
+					<p><i data-feather="tag"></i> <?php _e( 'Tags: ', 'html5blank' ); the_tags('', ', '); ?></p>
 
-					<p><?php _e( 'Categorised in: ', 'html5blank' ); the_category(', '); // Separated by commas ?></p>
+					<p><i data-feather="folder"></i> <?php _e( 'Categories: ', 'html5blank' ); the_category(', '); ?></p>
 
 					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-light'); ?>
 
@@ -31,18 +29,15 @@
 
 				</article>
 
-			<?php endwhile; ?>
+			</main>
 
-			<?php else: ?>
-
-				<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
-
-			<?php endif; ?>
-
-		</main>
-
+		</div>
 	</div>
-</div>
+<?php endwhile; else: ?>
+
+	<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
+
+<?php endif; ?>
 
 <?php get_sidebar(); ?>
 

@@ -1,16 +1,18 @@
 <?php $this_title = get_the_title(); ?>
 
 <div class="card card-mb">
+	<?php if ( has_post_thumbnail()) : ?>
+		<a href="<?php the_permalink(); ?>" title="<?php echo $this_title; ?>">
+			<?php the_post_thumbnail('large', [
+				'class' => 'card-img-top',
+			]); ?>
+		</a>
+	<?php endif; ?>
 	<div class="card-body">
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-				<a href="<?php the_permalink(); ?>" title="<?php echo $this_title; ?>">
-					<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
-				</a>
-			<?php endif; ?>
 
-			<h2 class="post-title text-center">
+			<h2 class="post-title">
 				<a href="<?php the_permalink(); ?>" title="<?php echo $this_title; ?>"><?php echo $this_title; ?></a>
 			</h2>
 
