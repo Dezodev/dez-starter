@@ -12,7 +12,8 @@
 **=====================================*/
 
 @font-color: #444;
-@font-color-light: #fff;
+@font-color-gray: #888;
+@font-color-light: #fefefe;
 @link-color: #2196F3;
 
 @primary-color: #008B8B;
@@ -20,6 +21,12 @@
 @info-color: #3498db;
 @warning-color: #e67e22;
 @danger-color: #e74c3c;
+
+.simple-btn(@bg: #ddd, @co: #444) {
+    background: @bg; color: @co; font-size: 0.9rem;
+    line-height: 1em; font-weight: 300; text-decoration: none; padding: 6px 8px;
+    &:hover { background: darken(@bg, 5%); }
+}
 
 
 /* General
@@ -32,7 +39,13 @@ img { max-width: 100%; }
 .card.card-mb { margin-bottom: 15px; }
 
 /* Font */
-h1 {  }
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 { color: @font-color; margin-bottom: 10px; }
+h1, .h1 { font-size: 34px; }
+h2, .h2 { font-size: 28px; }
+h3, .h3 { font-size: 23px; }
+h4, .h4 { font-size: 17px; }
+h5, .h5 { font-size: 16px; text-decoration: underline; }
+
 a {
     color: @link-color;
     &:hover { color: darken(@link-color, 15%) }
@@ -262,6 +275,67 @@ dl, ol, ul {
 .post-title {
     text-align: center; color: @primary-color;
     a { color: @primary-color; }
+}
+
+    // comments
+.comments {
+    ul {
+        padding-left: 0; list-style: none;
+    }
+
+    .comment {
+        padding-bottom: 15px; margin-bottom: 25px; border-bottom: 1px solid #ddd;
+
+        .comment-heading {
+            margin-bottom: 0;
+            a {
+                color: @font-color;
+            }
+        }
+        .comment-metadata {
+            margin-bottom: 8px;
+            a {
+                color: @font-color-gray; font-size: 0.8em; line-height: 1em;
+            }
+        }
+
+        .comment-edit-link {
+            .simple-btn();
+        }
+        .comment-reply-link {
+            .simple-btn(@primary-color, @font-color-light);
+        }
+
+        ul.children, #respond {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-top: 20px;
+            padding-left: 110px;
+        }
+
+        #respond {
+            #reply-title {
+                small {
+                    a {
+                        .simple-btn(); float: right;
+                    }
+                }
+            }
+        }
+    }
+
+    .comment-form {
+        .submit {
+            .simple-btn();
+        }
+    }
 }
 
 /* Misc

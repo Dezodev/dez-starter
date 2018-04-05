@@ -20,7 +20,7 @@
 
 			<?php the_excerpt(); ?>
 
-			<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-light'); ?>
+			<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-secondary'); ?>
 
 		</article>
 	</div>

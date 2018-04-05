@@ -2,26 +2,9 @@
 
 // Comment args
 $comm_args = [
-	'comment_field'	=> '<div class="form-group comment-form-comment"><label for="comment">' . _x( 'Comment', 'html5blank' ) . '</label><textarea id="comment" class="form-control" name="comment" rows="8" aria-required="true"></textarea></div>',
-	'label_submit'	=> __('Send', 'html5blank'),
-	'fields' => [
-		'author' =>
-			'<div class="form-group row comment-form-author"><div class="col-sm-4"><label for="author">' . __( 'Name', 'html5blank' ) .
-			( $req ? '<span class="required">*</span>' : '' ) . '</label></div>' .
-			'<div class="col-sm-8"><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-			'"' . $aria_req . ' /></div></div>',
-
-		'email' =>
-			'<div class="form-group row comment-form-email"><div class="col-sm-4"><label for="email">' . __( 'Email', 'html5blank' ) .
-			( $req ? '<span class="required">*</span>' : '' ) . '</label></div>' .
-			'<div class="col-sm-8"><input id="email" class="form-control" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-			'"' . $aria_req . ' /></div></div>',
-
-		'url' =>
-			'<div class="form-group row comment-form-url"><div class="col-sm-4"><label for="url">' . __( 'Website', 'html5blank' ) . '</label></div>' .
-			'<div class="col-sm-8"><input id="url" class="form-control" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
-			'" /></div></div>',
-	]
+	'comment_field'		=> '<div class="form-group comment-form-comment"><label for="comment">' . _x( 'Comment', 'html5blank' ) . '</label><textarea id="comment" class="form-control" name="comment" rows="8" aria-required="true"></textarea></div>',
+	'label_submit'		=> __('Send', 'html5blank'),
+	'title_reply'		=> __('Add comment', 'html5blank'),
 ];
 
 ?>
@@ -36,13 +19,19 @@ $comm_args = [
 
 <div class="comments">
 
-	<h2><?php comments_number(__('Be the first comment', 'html5blank'), __('1 comment', 'html5blank'), __('% comments', 'html5blank')); ?></h2>
+	<h2><?php comments_number(__('Leave the first comment', 'html5blank'), __('1 comment', 'html5blank'), __('% comments', 'html5blank')); ?></h2>
 
 	<?php if (have_comments()) : ?>
 
-		<ul>
-			<?php wp_list_comments('type=comment'); ?>
-		</ul>
+		<ul class="comment-list">
+			<?php wp_list_comments([
+				'type' 			=> 'comment',
+				'callback' 		=> 'dezo_comments',
+				'style'       	=> 'ul',
+		        'short_ping'  	=> true,
+		        'avatar_size' 	=> 64,
+			]); ?>
+		</ul><!-- .comment-list -->
 
 	<?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 

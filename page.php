@@ -15,8 +15,6 @@
 
 					<?php the_content(); ?>
 
-					<?php comments_template( '', true ); ?>
-
 					<br class="clear">
 
 					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-light'); ?>
@@ -24,6 +22,11 @@
 				</article>
 
 			</main>
+		</div>
+	</div>
+	<div class="card card-mb" id="comments-section">
+		<div class="card-body">
+			<?php comments_template('', true); ?>
 		</div>
 	</div>
 <?php

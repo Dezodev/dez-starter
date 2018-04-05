@@ -2,3 +2,7 @@
 
 ## Feather icons
 feather.replace()
+
+## Smooth scroll
+
+@smScroll = new SmoothScroll('a.smooth-scroll');

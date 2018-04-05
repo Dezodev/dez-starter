@@ -22,6 +22,8 @@ if (function_exists('add_theme_support')) {
     add_image_size('medium', 250, '', true); // Medium Thumbnail
     add_image_size('small', 120, '', true); // Small Thumbnail
 
+    add_theme_support('html5', ['comment-list']);
+
     // Localisation Support
     load_theme_textdomain('html5blank', get_template_directory() . '/languages');
 }
@@ -42,7 +44,10 @@ function dez_custom_scripts() {
     wp_register_script('dez-feather-icons', 'https://unpkg.com/feather-icons/dist/feather.min.js', false, null, true);
     wp_enqueue_script('dez-feather-icons');
 
-    wp_register_script('dez-theme-script', get_bloginfo('template_url') . '/js/main.min.js', array('dez-jquery-script', 'dez-popper-script', 'dez-bootstrap4-script'), '0.0.1', true);
+    wp_register_script('dez-smooth-scroll-script', get_bloginfo('template_url') . '/node_modules/smooth-scroll/dist/js/smooth-scroll.min.js', false, null, true);
+    wp_enqueue_script('dez-smooth-scroll-script');
+
+    wp_register_script('dez-theme-script', get_bloginfo('template_url') . '/js/main.min.js', array('dez-jquery-script', 'dez-popper-script', 'dez-bootstrap4-script', 'dez-smooth-scroll-script'), '0.0.1', true);
     wp_enqueue_script('dez-theme-script');
 }
 add_action('wp_enqueue_scripts', 'dez_custom_scripts');
@@ -85,14 +90,18 @@ function register_dezo_menu() {
 }
 add_action('init', 'register_dezo_menu');
 
-function display_post_meta_info() {
+function display_post_meta_info($link_to_comment = false) {
 ?>
     <ul class="list-inline post-meta-infos text-center">
-        <li class="list-inline-item post-date"><?php the_date(); ?> <?php the_time(); ?></li>
+        <li class="list-inline-item post-date"><time datetime="<?php the_time('c'); ?>"><?php the_time(get_option('date_format').' '.get_option('time_format')); ?></time></li>
         <li class="list-inline-item post-author"><i data-feather="user"></i> <?php the_author_posts_link(); ?></li>
 
         <?php if (comments_open(get_the_ID())): ?>
-            <li class="list-inline-item post-comments"><i data-feather="message-square"></i> <?php echo get_comments_number() ?></li>
+            <li class="list-inline-item post-comments"><i data-feather="message-square"></i>
+                <?php if($link_to_comment) echo '<a href="#comments-section" class="smooth-scroll">' ?>
+                <?php echo get_comments_number() ?>
+                <?php if($link_to_comment) echo '</a>' ?>
+            </li>
         <?php endif; ?>
     </ul>
 <?php
@@ -169,6 +178,84 @@ add_action('get_header', 'enable_threaded_comments');
 
 /* Comments
 **=====================================*/
+    // Move comment field to bottom
+function dezo_move_comment_field_to_bottom($fields) {
+    $comment_field = $fields['comment'];
+    unset( $fields['comment'] );
+    $fields['comment'] = $comment_field;
+
+    return $fields;
+}
+add_filter( 'comment_form_fields', 'dezo_move_comment_field_to_bottom' );
+
+    // Define default fields with html
+function dezo_comment_default_fields($arg) {
+    return [
+		'author' =>
+			'<div class="form-group row comment-form-author"><div class="col-sm-4"><label for="author">' . __( 'Name', 'html5blank' ) .
+			( $req ? '<span class="required">*</span>' : '' ) . '</label></div>' .
+			'<div class="col-sm-8"><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+			'"' . $aria_req . ' /></div></div>',
+
+		'email' =>
+			'<div class="form-group row comment-form-email"><div class="col-sm-4"><label for="email">' . __( 'Email', 'html5blank' ) .
+			( $req ? '<span class="required">*</span>' : '' ) . '</label></div>' .
+			'<div class="col-sm-8"><input id="email" class="form-control" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+			'"' . $aria_req . ' /></div></div>',
+    ];
+}
+add_filter('comment_form_default_fields', 'dezo_comment_default_fields');
+
+    // Custom Comments Callback
+function dezo_comments( $comment, $args, $depth ) {
+    $tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
+?>
+    <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $args['has_children'] ? 'parent row' : 'row' ); ?>>
+
+        <?php if ( 0 != $args['avatar_size'] ): ?>
+        <div class="comment-left col-auto mr-3 pr-0">
+            <a href="<?php echo get_comment_author_url(); ?>" class="comment-avatar">
+                <?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
+            </a>
+        </div>
+        <?php endif; ?>
+
+        <div class="comment-body col" id="div-comment-<?php comment_ID(); ?>">
+
+            <?php printf( '<h4 class="comment-heading mt-0">%s</h4>', get_comment_author_link() ); ?>
+
+            <div class="comment-metadata">
+                <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>" class="smooth-scroll">
+                    <time datetime="<?php comment_time( 'c' ); ?>"> <?php echo get_comment_date(). ' ' .get_comment_time(); ?> </time>
+                </a>
+            </div><!-- .comment-metadata -->
+
+            <?php if ( '0' == $comment->comment_approved ) : ?>
+            <p class="comment-awaiting-moderation label label-info"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
+            <?php endif; ?>
+
+            <div class="comment-content">
+                <?php comment_text(); ?>
+            </div><!-- .comment-content -->
+
+            <ul class="list-inline text-right">
+                <?php edit_comment_link( __( 'Edit' ), '<li class="list-inline-item edit-link">', '</li>' ); ?>
+
+                <?php
+                    comment_reply_link( array_merge( $args, array(
+                        'add_below' => 'div-comment',
+                        'depth'     => $depth,
+                        'max_depth' => $args['max_depth'],
+                        'before'    => '<li class="list-inline-item reply-link">',
+                        'after'     => '</li>'
+                    ) ) );
+                ?>
+
+            </ul>
+
+        </div>
+<?php
+}
 
 /* Optimizations
 **=====================================*/

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-	<div class="card">
+	<div class="card card-mb">
 		<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
 			<?php the_post_thumbnail('large', [
 				'class' => 'card-img-top',
@@ -15,7 +15,7 @@
 						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
 					</h1>
 
-					<?php display_post_meta_info() ?>
+					<?php display_post_meta_info(true) ?>
 
 					<?php the_content(); // Dynamic Content ?>
 
@@ -25,12 +25,14 @@
 
 					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-light'); ?>
 
-					<?php comments_template(); ?>
-
 				</article>
 
 			</main>
-
+		</div>
+	</div>
+	<div class="card card-mb" id="comments-section">
+		<div class="card-body">
+			<?php comments_template(); ?>
 		</div>
 	</div>
 <?php endwhile; else: ?>
