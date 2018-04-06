@@ -13,7 +13,11 @@
 					</p>
 				</div>
 				<div class="col-sm-auto">
-					<a href="#" class="smooth-scroll"> <?php echo __('Back to top', 'html5blank'); ?> </a>
+					<ul class="list-inline mb-0">
+						<li class="list-inline-item">
+							Made by <a href="http://dezodev.tk/" target="_blank">DezoDev</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

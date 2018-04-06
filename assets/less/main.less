@@ -25,7 +25,7 @@
 .simple-btn(@bg: #ddd, @co: #444) {
     background: @bg; color: @co; font-size: 0.9rem;
     line-height: 1em; font-weight: 300; text-decoration: none; padding: 6px 8px;
-    &:hover { background: darken(@bg, 5%); }
+    &:hover { background: darken(@bg, 5%); color: @co; }
 }
 
 
@@ -226,7 +226,7 @@ dl, ol, ul {
 /* Pagination */
 .pagination {
     .page-link {
-        color: @primary-color;
+        color: @font-color;
     }
     .page-item.active .page-link {
         background: @primary-color; border-color: @primary-color; color: @font-color-light;
@@ -259,6 +259,10 @@ dl, ol, ul {
     margin-bottom: 60px;
 }
 
+body.admin-bar .navbar.fixed-top {
+    top: 32px;
+}
+
 /* Secondary
 **=====================================*/
 
@@ -283,6 +287,12 @@ dl, ol, ul {
 
 /* Pages
 **=====================================*/
+
+.bck-top-btn {
+    .simple-btn(@primary-color, @font-color-light);
+    position: fixed; bottom: 20px; right: 20px; z-index: 99; text-align: center; padding: 0;
+    border-radius: 50%; font-size: 30px; line-height: 50px; height: 50px; width: 50px;
+}
 
 .post-title {
     text-align: center; color: @font-color;

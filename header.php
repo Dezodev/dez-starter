@@ -12,9 +12,12 @@
 
 </head>
 <body <?php body_class(); ?>>
+	<a href="#" class="smooth-scroll bck-top-btn">
+		<i class="fa fa-angle-double-up"></i>
+	</a>
 
 	<header id="header">
-		<nav class="navbar navbar-expand-lg navbar-light">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-light">
 			<div class="container">
 
 				<a class="navbar-brand" href="<?php echo home_url(); ?>">
@@ -31,6 +34,11 @@
 
 			</div>
 		</nav>
+		<?php if ( get_header_image() ) : ?>
+			<div id="header-image">
+				<img src="<?php header_image(); ?>" width="<?php echo absint( get_custom_header()->width ); ?>" height="<?php echo absint( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+			</div>
+		<?php endif; ?>
 	</header>
 
 	<div class="container">

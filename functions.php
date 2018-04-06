@@ -6,6 +6,8 @@
 
 require_once('inc/bootstrap-walker-nav-menu.php');
 
+include('inc/customizer.php');
+
 /* Theme Support
 **=====================================*/
 if (!isset($content_width)) {
@@ -22,6 +24,19 @@ if (function_exists('add_theme_support')) {
     add_image_size('medium', 250, 188, true); // Medium Thumbnail
     add_image_size('small', 150, 150, true); // Small Thumbnail
 
+    // Site header image
+    /**
+     * Photo by Matteo Catanese on Unsplash
+     */
+    $args = array(
+    	'width'         => 2540,
+    	'height'        => 500,
+    	'default-image' => get_template_directory_uri() . '/images/header.jpg',
+        'uploads'       => true,
+    );
+    add_theme_support( 'custom-header', $args );
+
+    // Comments
     add_theme_support('html5', ['comment-list']);
 
     // Localisation Support
@@ -47,7 +62,7 @@ function dez_custom_scripts() {
     wp_register_script('dez-smooth-scroll-script', get_bloginfo('template_url') . '/node_modules/smooth-scroll/dist/js/smooth-scroll.min.js', false, null, true);
     wp_enqueue_script('dez-smooth-scroll-script');
 
-    wp_register_script('dez-theme-script', get_bloginfo('template_url') . '/js/main.min.js', array('dez-jquery-script', 'dez-popper-script', 'dez-bootstrap4-script', 'dez-smooth-scroll-script'), '0.0.1', true);
+    wp_register_script('dez-theme-script', get_bloginfo('template_url') . '/assets/js/main.min.js', array('dez-jquery-script', 'dez-popper-script', 'dez-bootstrap4-script', 'dez-smooth-scroll-script'), '0.0.1', true);
     wp_enqueue_script('dez-theme-script');
 }
 add_action('wp_enqueue_scripts', 'dez_custom_scripts');
@@ -59,7 +74,7 @@ function dez_custom_styles() {
     wp_register_style('dez-fontawesome-style', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, null, 'all');
     wp_enqueue_style('dez-fontawesome-style');
 
-    wp_register_style('dez-theme-style', get_bloginfo('template_url') . '/css/main.css', array('dez-bootstrap-style'), '0.0.1');
+    wp_register_style('dez-theme-style', get_bloginfo('template_url') . '/assets/css/main.css', array('dez-bootstrap-style'), '0.0.1');
     wp_enqueue_style('dez-theme-style');
 }
 add_action('wp_enqueue_scripts', 'dez_custom_styles');
@@ -94,7 +109,10 @@ function display_post_meta_info($link_to_comment = false) {
 ?>
     <ul class="list-inline post-meta-infos text-center">
         <li class="list-inline-item post-date"><time datetime="<?php the_time('c'); ?>"><?php the_time(get_option('date_format').' '.get_option('time_format')); ?></time></li>
-        <li class="list-inline-item post-author"><i data-feather="user"></i> <?php the_author_posts_link(); ?></li>
+
+        <?php if(get_theme_mod('dezo_post_meta_authors_display', 'show') == 'show') : ?>
+            <li class="list-inline-item post-author"><i data-feather="user"></i> <?php the_author_posts_link(); ?></li>
+        <?php endif ?>
 
         <?php if (comments_open(get_the_ID())): ?>
             <li class="list-inline-item post-comments"><i data-feather="message-square"></i>
