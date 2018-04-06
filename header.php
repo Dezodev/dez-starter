@@ -5,7 +5,8 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="<?php bloginfo('description'); ?>">
+
+	<link href="https://fonts.googleapis.com/css?family=Asap:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
 	<?php wp_head(); ?>
 

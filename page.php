@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-	<div class="card">
+	<div class="card card-mb">
 		<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
 			<?php the_post_thumbnail('large', [
 				'class' => 'card-img-top',

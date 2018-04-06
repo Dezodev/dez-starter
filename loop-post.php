@@ -11,7 +11,6 @@
 	<div class="card-body">
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-
 			<h2 class="post-title">
 				<a href="<?php the_permalink(); ?>" title="<?php echo $this_title; ?>"><?php echo $this_title; ?></a>
 			</h2>
@@ -20,7 +19,14 @@
 
 			<?php the_excerpt(); ?>
 
-			<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-secondary'); ?>
+			<ul class="list-inline">
+				<li class="list-inline-item">
+					<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-secondary"> <?php _e('Read more', 'html5blank') ?> </a>
+				</li>
+				<li class="list-inline-item">
+					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-secondary'); ?>
+				</li>
+			</ul>
 
 		</article>
 	</div>

@@ -16,9 +16,9 @@
 @font-color-light: #fefefe;
 @link-color: #2196F3;
 
-@primary-color: #008B8B;
+@primary-color: #FFC20C; // 2F6690
 @success-color: #2ecc71;
-@info-color: #3498db;
+@info-color: #63ADF2;
 @warning-color: #e67e22;
 @danger-color: #e74c3c;
 
@@ -33,7 +33,7 @@
 **=====================================*/
 
 body {
-    background-color: #efefef; color:@font-color;
+    background-color: #efefef; color:@font-color; font-family: 'Asap', sans-serif; font-size: 16px;
 }
 img { max-width: 100%; }
 .card.card-mb { margin-bottom: 15px; }
@@ -80,7 +80,7 @@ dl, ol, ul {
 
     &:not([disabled]):not(.disabled).active,
     &:not([disabled]):not(.disabled):active,
-    .show>&.dropdown-toggle, &:hover { background-color: @primary-color; }
+    .show>&.dropdown-toggle, &:hover { background-color: @primary-color; border-color: @primary-color; }
 
     &:disabled, &.disabled {
         color: fadeout(@primary-color, 5%); border-color: fadeout(@primary-color, 5%);
@@ -106,7 +106,7 @@ dl, ol, ul {
 
     &:not([disabled]):not(.disabled).active,
     &:not([disabled]):not(.disabled):active,
-    .show>&.dropdown-toggle, &:hover { background-color: #454545; }
+    .show>&.dropdown-toggle, &:hover { background-color: #454545; border-color: #454545; }
 
     &:disabled, &.disabled {
         color: fadeout(#454545, 5%); border-color: fadeout(#454545, 5%);
@@ -129,7 +129,7 @@ dl, ol, ul {
 
     &:not([disabled]):not(.disabled).active,
     &:not([disabled]):not(.disabled):active,
-    .show>&.dropdown-toggle, &:hover { background-color: @success-color; }
+    .show>&.dropdown-toggle, &:hover { background-color: @success-color; border-color: @success-color; }
 
     &:disabled, &.disabled {
         color: fadeout(@success-color, 5%); border-color: fadeout(@success-color, 5%);
@@ -152,7 +152,7 @@ dl, ol, ul {
 
     &:not([disabled]):not(.disabled).active,
     &:not([disabled]):not(.disabled):active,
-    .show>&.dropdown-toggle, &:hover { background-color: @info-color; }
+    .show>&.dropdown-toggle, &:hover { background-color: @info-color; border-color: @info-color; }
 
     &:disabled, &.disabled {
         color: fadeout(@info-color, 5%); border-color: fadeout(@info-color, 5%);
@@ -175,7 +175,7 @@ dl, ol, ul {
 
     &:not([disabled]):not(.disabled).active,
     &:not([disabled]):not(.disabled):active,
-    .show>&.dropdown-toggle, &:hover { background-color: @warning-color; color: #fff; }
+    .show>&.dropdown-toggle, &:hover { background-color: @warning-color; color: #fff; border-color: @warning-color; }
 
     &:disabled, &.disabled {
         color: fadeout(@warning-color, 5%); border-color: fadeout(@warning-color, 5%);
@@ -198,7 +198,7 @@ dl, ol, ul {
 
     &:not([disabled]):not(.disabled).active,
     &:not([disabled]):not(.disabled):active,
-    .show>&.dropdown-toggle, &:hover { background-color: @danger-color; }
+    .show>&.dropdown-toggle, &:hover { background-color: @danger-color; border-color: @danger-color; }
 
     &:disabled, &.disabled {
         color: fadeout(@danger-color, 5%); border-color: fadeout(@danger-color, 5%);
@@ -223,8 +223,20 @@ dl, ol, ul {
     }
 }
 
+/* Pagination */
+.pagination {
+    .page-link {
+        color: @primary-color;
+    }
+    .page-item.active .page-link {
+        background: @primary-color; border-color: @primary-color; color: @font-color-light;
+    }
+}
+
 /* Border radius */
-.card, .form-control, .btn, .dropdown-menu { border-radius: 2px; }
+.card, .form-control, .btn, .dropdown-menu, .pagination { border-radius: 2px; }
+.page-item:first-child .page-link { border-top-left-radius: 2px; border-bottom-left-radius: 2px; }
+.page-item:last-child .page-link { border-top-right-radius: 2px; border-bottom-right-radius: 2px; }
 
 /* Header
 **=====================================*/
@@ -239,7 +251,7 @@ dl, ol, ul {
     .navbar-nav {
         .nav-item {
             .nav-link.active {
-                color: @primary-color;
+                color: @primary-color; font-weight: 500;
             }
         }
     }
@@ -273,8 +285,12 @@ dl, ol, ul {
 **=====================================*/
 
 .post-title {
-    text-align: center; color: @primary-color;
-    a { color: @primary-color; }
+    text-align: center; color: @font-color;
+    a { color: @font-color; }
+    &::after {
+        display: block; height: 3px; width: 100px;
+        background-color: @primary-color; margin: 15px auto; content: ' ';
+    }
 }
 
     // comments

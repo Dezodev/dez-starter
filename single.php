@@ -12,7 +12,7 @@
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 					<h1 class="post-title">
-						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+						<?php the_title(); ?>
 					</h1>
 
 					<?php display_post_meta_info(true) ?>

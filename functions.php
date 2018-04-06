@@ -18,9 +18,9 @@ if (function_exists('add_theme_support')) {
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-    add_image_size('large', 700, '', true); // Large Thumbnail
-    add_image_size('medium', 250, '', true); // Medium Thumbnail
-    add_image_size('small', 120, '', true); // Small Thumbnail
+    add_image_size('large', 750, 322, false); // Large Thumbnail
+    add_image_size('medium', 250, 188, true); // Medium Thumbnail
+    add_image_size('small', 150, 150, true); // Small Thumbnail
 
     add_theme_support('html5', ['comment-list']);
 
@@ -154,15 +154,40 @@ function my_remove_recent_comments_style() {
 }
 add_action('widgets_init', 'my_remove_recent_comments_style');
 
-function dezo_pagination() {
+function dezo_pagination($echo) {
     global $wp_query;
-    $big = 999999999;
-    echo paginate_links(array(
-        'base' => str_replace($big, '%#%', get_pagenum_link($big)),
+
+    $big = 999999999; // need an unlikely integer
+
+    $pages = paginate_links(array(
+        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
         'format' => '?paged=%#%',
-        'current' => max(1, get_query_var('paged')),
-        'total' => $wp_query->max_num_pages
+        'current' => max( 1, get_query_var('paged') ),
+        'total' => $wp_query->max_num_pages,
+        'type'  => 'array',
+        'prev_next'   => true,
     ));
+
+    if(is_array($pages)) {
+        $paged = (get_query_var('paged') == 0) ? 1 : get_query_var('paged');
+
+        $html = '<ul class="pagination">';
+
+        foreach ( $pages as $page ) {
+            $suppClass = (strpos($page, 'current') !== false)? ' active' : '';
+
+            $page = str_replace('page-numbers', 'page-numbers page-link', $page);
+            $html .= "<li class=\"page-item$suppClass\">$page</li>";
+        }
+
+        $html .= '</ul>';
+
+        if ( $echo ) {
+            echo $html;
+        } else {
+            return $html;
+        }
+    }
 }
 add_action('init', 'dezo_pagination');
 

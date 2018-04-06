@@ -1,5 +1,4 @@
-<!-- pagination -->
+
 <div class="pagination">
-	<?php dezo_pagination(); ?>
+	<?php dezo_pagination(true); ?>
 </div>
-<!-- /pagination -->

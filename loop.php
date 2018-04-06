@@ -4,5 +4,5 @@ if (have_posts()):
 		get_template_part('loop-post');
 	endwhile;
 else: ?>
-	<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+	<p class="lead"><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></p>
 <?php endif; ?>
