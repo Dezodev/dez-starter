@@ -1,6 +1,6 @@
 </div> <!-- primary -->
 
-<aside id="secondary" class="col-sm-4">
+<aside id="secondary" class="d-none d-sm-block col-sm-12 col-md-4">
 
 	<div class="card card-mb">
 		<div class="card-body">

@@ -166,7 +166,7 @@ if (function_exists('register_sidebar')) {
         'name' => __('Footer', 'dez-starter'),
         'description' => __('Widget area for footer', 'dez-starter'),
         'id' => 'widget-area-2',
-        'before_widget' => '<div id="%1$s" class="col widget-footer %2$s">',
+        'before_widget' => '<div id="%1$s" class="col-12 col-md widget-footer %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'

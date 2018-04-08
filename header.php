@@ -10,6 +10,12 @@
 
 	<?php wp_head(); ?>
 
+	<style media="screen">
+		@media screen and (max-width: 782px) {
+			html { margin-top: 0 !important; }
+		}
+	</style>
+
 </head>
 <body <?php body_class(); ?>>
 	<a href="#" class="smooth-scroll bck-top-btn">
@@ -20,17 +26,15 @@
 		<nav class="navbar fixed-top navbar-expand-lg navbar-light">
 			<div class="container">
 
-				<a class="navbar-brand" href="<?php echo home_url(); ?>">
+				<a class="navbar-brand mr-auto" href="<?php echo home_url(); ?>">
 					<?php bloginfo('name') ?>
 				</a>
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
-				<div class="ml-auto">
-					<?php dezo_nav(); ?>
-				</div>
+				<?php dezo_nav(); ?>
 
 			</div>
 		</nav>
@@ -40,6 +44,6 @@
 		<?php endif; ?>
 	</header>
 
-	<div class="container">
+	<div class="container" id="main-container">
 		<div class="row">
 			<div id="primary" class="col-sm">

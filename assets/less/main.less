@@ -268,6 +268,8 @@ dl, ol, ul {
         margin-top: 57px; height: 350px; overflow: hidden; background-position: center;
     }
 
+    #navbar-content { flex-grow: inherit; }
+
     margin-bottom: 60px;
 }
 
@@ -463,3 +465,40 @@ a img {
 
 .sticky { }
 .bypostauthor { }
+
+
+/* Responsive
+**=====================================*/
+
+// Extra small devices (portrait phones)
+@media screen and (max-width: 576px) {
+
+}
+
+// Small devices (landscape phones)
+@media screen and (max-width: 768px) {
+    #wpadminbar { display: none; }
+    body.admin-bar .navbar.fixed-top { top: 0; }
+    #header #header-image { height: 150px; }
+    .widget-footer { margin-top: 15px; }
+}
+
+// Medium devices (tablets)
+@media screen and (max-width: 992px) {
+    #main-container, #header .navbar .container {
+        width: 100%; max-width: 100%;
+    }
+
+    #navbar-content {
+        margin-top: 15px;
+
+        .dropdown-menu { border: none; }
+    }
+}
+
+// Large devices (desktops)
+@media screen and (max-width: 1200px) {
+
+}
+
+// Extra large devices (large desktops) is the main css
