@@ -2,7 +2,7 @@
 
 	<main role="main">
 
-		<h1><?php echo sprintf( __( '%s Search Results for ', 'html5blank' ), $wp_query->found_posts ). '"' .get_search_query(). '"'; ?></h1>
+		<h1><?php echo sprintf( __( '%s Search Results for ', 'dez-starter' ), $wp_query->found_posts ). '"' .get_search_query(). '"'; ?></h1>
 
 		<?php get_template_part('loop'); ?>
 

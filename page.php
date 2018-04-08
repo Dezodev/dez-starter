@@ -31,7 +31,7 @@
 	</div>
 <?php
 endwhile; else:
-	echo '<h1>'. _e( 'Sorry, nothing to display.', 'html5blank' ) . '</h1>';
+	echo '<h1>'. _e( 'Sorry, nothing to display.', 'dez-starter' ) . '</h1>';
 endif; ?>
 
 <?php get_sidebar(); ?>

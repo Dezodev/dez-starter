@@ -22,7 +22,7 @@
 
 		<?php else: ?>
 
-			<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+			<h2><?php _e( 'Sorry, nothing to display.', 'dez-starter' ); ?></h2>
 
 		<?php endif; ?>
 	</main>

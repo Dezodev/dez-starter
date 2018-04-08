@@ -4,7 +4,7 @@
 
 	<?php if (have_posts()): the_post(); ?>
 
-	<h1><?php echo __('Author Archives : ', 'html5blank') . get_the_author(); ?></h1>
+	<h1><?php echo __('Author Archives : ', 'dez-starter') . get_the_author(); ?></h1>
 
 	<?php if ( get_the_author_meta('description')) : ?>
 
@@ -12,7 +12,7 @@
 			<div class="card-body">
 				<?php
 					echo '<div class="float-left mr-3">' . get_avatar(get_the_author_meta('user_email')) . '</div>';
-					echo '<h2>'.__('About', 'html5blank').' '.get_the_author().'</h2>';
+					echo '<h2>'.__('About', 'dez-starter').' '.get_the_author().'</h2>';
 					echo wpautop(get_the_author_meta('description'));
 				?>
 			</div>
@@ -27,7 +27,7 @@
 
 	<?php else: ?>
 
-		<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+		<h2><?php _e( 'Sorry, nothing to display.', 'dez-starter' ); ?></h2>
 
 	<?php endif; ?>
 

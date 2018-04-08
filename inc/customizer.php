@@ -9,7 +9,7 @@
 
 function dezo_customizer_settings( $wp_customize ) {
     $wp_customize->add_section( 'dezo_theme_options' , array(
-        'title'      => __('Theme options', 'html5blank'),
+        'title'      => __('Theme options', 'dez-starter'),
         'priority'   => 30,
     ));
 

@@ -5,19 +5,28 @@
 	</div> <!-- .container -->
 
 	<footer id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<p class="copyright">
-						&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.
-					</p>
+		<div id="footer-widgets">
+			<div class="container">
+				<div class="row">
+					<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-2')) ?>
 				</div>
-				<div class="col-sm-auto">
-					<ul class="list-inline mb-0">
-						<li class="list-inline-item">
-							Made by <a href="http://dezodev.tk/" target="_blank">DezoDev</a>
-						</li>
-					</ul>
+			</div>
+		</div>
+		<div id="footer-mentions">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="copyright">
+							&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.
+						</p>
+					</div>
+					<div class="col-sm-auto">
+						<ul class="list-inline mb-0">
+							<li class="list-inline-item">
+								Made by <a href="http://dezodev.tk/" target="_blank">DezoDev</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

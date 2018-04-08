@@ -21,7 +21,7 @@
 
 			<ul class="list-inline">
 				<li class="list-inline-item">
-					<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-secondary"> <?php _e('Read more', 'html5blank') ?> </a>
+					<a href="<?php the_permalink(); ?>" class="btn btn-sm btn-secondary"> <?php _e('Read more', 'dez-starter') ?> </a>
 				</li>
 				<li class="list-inline-item">
 					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-secondary'); ?>

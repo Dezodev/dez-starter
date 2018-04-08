@@ -18,5 +18,9 @@
   "homepage": "https://github.com/Dezodev/dez-starter#readme",
   "dependencies": {
     "smooth-scroll": "^12.1.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-wp-pot": "^2.2.0"
   }
 }

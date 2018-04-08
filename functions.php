@@ -20,7 +20,7 @@ if (function_exists('add_theme_support')) {
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-    add_image_size('large', 750, 322, false); // Large Thumbnail
+    add_image_size('large', 750, 322, true); // Large Thumbnail
     add_image_size('medium', 250, 188, true); // Medium Thumbnail
     add_image_size('small', 150, 150, true); // Small Thumbnail
 
@@ -30,7 +30,7 @@ if (function_exists('add_theme_support')) {
      */
     $args = array(
     	'width'         => 2540,
-    	'height'        => 500,
+    	'height'        => 350,
     	'default-image' => get_template_directory_uri() . '/images/header.jpg',
         'uploads'       => true,
     );
@@ -40,7 +40,7 @@ if (function_exists('add_theme_support')) {
     add_theme_support('html5', ['comment-list']);
 
     // Localisation Support
-    load_theme_textdomain('html5blank', get_template_directory() . '/languages');
+    load_theme_textdomain('dez-starter', get_template_directory() . '/languages');
 }
 
 /* Scripts & styles
@@ -100,7 +100,7 @@ function dezo_nav() {
 
 function register_dezo_menu() {
     register_nav_menus(array(
-        'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
+        'header-menu' => __('Header Menu', 'dez-starter'), // Main Navigation
     ));
 }
 add_action('init', 'register_dezo_menu');
@@ -150,13 +150,24 @@ add_filter('body_class', 'add_slug_to_body_class');
 
 // If Dynamic Sidebar Exists
 if (function_exists('register_sidebar')) {
-    // Define Sidebar Widget Area 1
+    // Define Sidebar Widget
     register_sidebar(array(
-        'name' => __('Widget Area 1', 'html5blank'),
-        'description' => __('Description for this widget-area...', 'html5blank'),
+        'name' => __('Sidebar', 'dez-starter'),
+        'description' => __('Widget area for Sidebar', 'dez-starter'),
         'id' => 'widget-area-1',
-        'before_widget' => '<div id="%1$s" class="card card-mb %2$s"><div class="card-body">',
+        'before_widget' => '<div id="%1$s" class="widget-card card card-mb %2$s"><div class="card-body">',
         'after_widget' => '</div></div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
+    ));
+
+    // Define Footer Widget
+    register_sidebar(array(
+        'name' => __('Footer', 'dez-starter'),
+        'description' => __('Widget area for footer', 'dez-starter'),
+        'id' => 'widget-area-2',
+        'before_widget' => '<div id="%1$s" class="col widget-footer %2$s">',
+        'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
     ));
@@ -235,13 +246,13 @@ add_filter( 'comment_form_fields', 'dezo_move_comment_field_to_bottom' );
 function dezo_comment_default_fields($arg) {
     return [
 		'author' =>
-			'<div class="form-group row comment-form-author"><div class="col-sm-4"><label for="author">' . __( 'Name', 'html5blank' ) .
+			'<div class="form-group row comment-form-author"><div class="col-sm-4"><label for="author">' . __( 'Name', 'dez-starter' ) .
 			( $req ? '<span class="required">*</span>' : '' ) . '</label></div>' .
 			'<div class="col-sm-8"><input id="author" class="form-control" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
 			'"' . $aria_req . ' /></div></div>',
 
 		'email' =>
-			'<div class="form-group row comment-form-email"><div class="col-sm-4"><label for="email">' . __( 'Email', 'html5blank' ) .
+			'<div class="form-group row comment-form-email"><div class="col-sm-4"><label for="email">' . __( 'Email', 'dez-starter' ) .
 			( $req ? '<span class="required">*</span>' : '' ) . '</label></div>' .
 			'<div class="col-sm-8"><input id="email" class="form-control" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
 			'"' . $aria_req . ' /></div></div>',

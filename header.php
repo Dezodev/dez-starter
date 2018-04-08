@@ -35,8 +35,7 @@
 			</div>
 		</nav>
 		<?php if ( get_header_image() ) : ?>
-			<div id="header-image">
-				<img src="<?php header_image(); ?>" width="<?php echo absint( get_custom_header()->width ); ?>" height="<?php echo absint( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+			<div id="header-image" style="background-image: url(<?php header_image(); ?>);">
 			</div>
 		<?php endif; ?>
 	</header>

@@ -19,9 +19,9 @@
 
 					<?php the_content(); // Dynamic Content ?>
 
-					<p><i data-feather="tag"></i> <?php _e( 'Tags: ', 'html5blank' ); the_tags('', ', '); ?></p>
+					<p><i data-feather="tag"></i> <?php _e( 'Tags: ', 'dez-starter' ); the_tags('', ', '); ?></p>
 
-					<p><i data-feather="folder"></i> <?php _e( 'Categories: ', 'html5blank' ); the_category(', '); ?></p>
+					<p><i data-feather="folder"></i> <?php _e( 'Categories: ', 'dez-starter' ); the_category(', '); ?></p>
 
 					<?php edit_post_link(null, null, null, null, 'btn btn-sm btn-light'); ?>
 
@@ -37,7 +37,7 @@
 	</div>
 <?php endwhile; else: ?>
 
-	<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
+	<h1><?php _e( 'Sorry, nothing to display.', 'dez-starter' ); ?></h1>
 
 <?php endif; ?>
 

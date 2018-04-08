@@ -23,9 +23,17 @@
 @danger-color: #e74c3c;
 
 .simple-btn(@bg: #ddd, @co: #444) {
-    background: @bg; color: @co; font-size: 0.9rem;
+    background: @bg; color: @co; font-size: 0.9rem; border: none;
     line-height: 1em; font-weight: 300; text-decoration: none; padding: 6px 8px;
     &:hover { background: darken(@bg, 5%); color: @co; }
+}
+
+.simple-transition(@time: 500ms) {
+    -webkit-transition: all @time ease;
+    -moz-transition: all @time ease;
+    -ms-transition: all @time ease;
+    -o-transition: all @time ease;
+    transition: all @time ease;
 }
 
 
@@ -33,7 +41,7 @@
 **=====================================*/
 
 body {
-    background-color: #efefef; color:@font-color; font-family: 'Asap', sans-serif; font-size: 16px;
+    background-color: #efefef; color:@font-color; font-family: 'Asap', sans-serif; font-size: 15px;
 }
 img { max-width: 100%; }
 .card.card-mb { margin-bottom: 15px; }
@@ -256,6 +264,10 @@ dl, ol, ul {
         }
     }
 
+    #header-image {
+        margin-top: 57px; height: 350px; overflow: hidden; background-position: center;
+    }
+
     margin-bottom: 60px;
 }
 
@@ -269,8 +281,21 @@ body.admin-bar .navbar.fixed-top {
 #secondary {
     body.outside-title-page & { margin-top: 56px; }
 
-    .card {
-        .card-body { padding: 15px; }
+    .widget-card {
+        ul {
+            padding-left: 0; list-style: none;
+
+            li { padding: 5px 0px; /* border-bottom: 1px dotted @font-color;*/
+                a { color: @font-color; }
+
+                &::before {
+                    content: '\f105'; margin-right: 15px; font-family: FontAwesome;
+                    .simple-transition(300ms); color: @primary-color; font-weight: bolder;
+                }
+                &:hover::before { margin-right: 10px; margin-left: 5px; }
+            }
+            ul { margin-left: 20px; }
+        }
     }
 }
 
@@ -279,10 +304,15 @@ body.admin-bar .navbar.fixed-top {
 **=====================================*/
 
 #footer {
-    background-color: #444; margin-top: 60px; color: #fff;
-    padding: 15px 0;
+    background-color: #333; margin-top: 60px; color: #fff;
 
     p { margin-bottom: 0; }
+    #footer-mentions { background: #222; padding-top: 10px; padding-bottom: 10px; }
+    #footer-widgets { padding-top: 25px; padding-bottom: 25px;
+        h3, h4 {
+            color: @font-color-light;
+        }
+    }
 }
 
 /* Pages

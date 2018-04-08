@@ -8,126 +8,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Language-Team: \n"
-"X-Generator: Poedit 2.0.4\n"
-"Last-Translator: Dezodev <dezodev@gmail.com>\n"
-"Language: fr_FR\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: 404.php:8
 msgid "Page not found"
-msgstr "Page non trouvée"
+msgstr ""
 
 #: 404.php:10
 msgid "Return home?"
-msgstr "Retour à la page d'accueil ?"
+msgstr ""
 
 #: author.php:7
 msgid "Author Archives : "
-msgstr "Archives de l'auteur : "
+msgstr ""
 
 #: author.php:15
 msgid "About"
-msgstr "À propos"
+msgstr ""
 
 #: author.php:30, loop.php:7, page.php:34, single.php:40, template-demo.php:25
 msgid "Sorry, nothing to display."
-msgstr "Désolé, aucun contenu disponible."
+msgstr ""
 
 #: category.php:4
 msgid "Categories :"
-msgstr "Catégories :"
+msgstr ""
 
 #: comments.php:5
 msgctxt "dez-starter"
 msgid "Comment"
-msgstr "Commentaire"
+msgstr ""
 
 #: comments.php:6
 msgid "Send"
-msgstr "Envoyer"
+msgstr ""
 
 #: comments.php:7
 msgid "Add comment"
-msgstr "Ajouter un commentaire"
+msgstr ""
 
 #: comments.php:15
 msgid "Post is password protected. Enter the password to view any comments."
-msgstr "Cet article est protégé par un mot de passe. Merci d'entrer le mot de passe pour voir les commentaires."
+msgstr ""
 
 #: comments.php:22
 msgid "Leave the first comment"
-msgstr "Laisser le premier commentaire"
+msgstr ""
 
 #: comments.php:22
 msgid "1 comment"
-msgstr "1 commentaire"
+msgstr ""
 
 #: comments.php:22
 msgid "% comments"
-msgstr "% commentaires"
+msgstr ""
 
 #: comments.php:38
 msgid "Comments are closed here."
-msgstr "Les commentaires sont fermés."
+msgstr ""
 
 #: functions.php:103
 msgid "Header Menu"
-msgstr "Menu d'en-tête"
+msgstr ""
 
 #: functions.php:155
 msgid "Sidebar"
-msgstr "Barre latérale"
+msgstr ""
 
 #: functions.php:156
 msgid "Widget area for Sidebar"
-msgstr "Zone de widget pour barre latérale"
+msgstr ""
 
 #: functions.php:166
 msgid "Footer"
-msgstr "Pied de page"
+msgstr ""
 
 #: functions.php:167
 msgid "Widget area for footer"
-msgstr "Zone de widget pour pied de page"
+msgstr ""
 
 #: functions.php:249
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #: functions.php:255
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
 #: loop-post.php:24
 msgid "Read more"
-msgstr "Lire plus"
+msgstr ""
 
 #: page-trystyle.php:3
 msgid "Trystyle Page"
-msgstr "Page d'essai de style"
+msgstr ""
 
 #: search.php:5
 msgid "%s Search Results for "
-msgstr "%s Résultats de recherche pour "
+msgstr ""
 
 #: searchform.php:4, searchform.php:4
 msgid "Search"
-msgstr "Rechercher"
+msgstr ""
 
 #: single.php:22
 msgid "Tags: "
-msgstr "Tags : "
+msgstr ""
 
 #: single.php:24
 msgid "Categories: "
-msgstr "Catégories : "
+msgstr ""
 
 #: tag.php:5
 msgid "Tag Archive: "
-msgstr "Archives de tags : "
+msgstr ""
