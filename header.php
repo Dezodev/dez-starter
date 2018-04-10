@@ -18,7 +18,7 @@
 
 </head>
 <body <?php body_class(); ?>>
-	<a href="#" class="smooth-scroll bck-top-btn">
+	<a href="#" class="smooth-scroll" id="bck-top-btn">
 		<i class="fa fa-angle-double-up"></i>
 	</a>
 

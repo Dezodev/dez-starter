@@ -266,6 +266,7 @@ dl, ol, ul {
 
     #header-image {
         margin-top: 57px; height: 350px; overflow: hidden; background-position: center;
+        background-size: cover;
     }
 
     #navbar-content { flex-grow: inherit; }
@@ -320,10 +321,11 @@ body.admin-bar .navbar.fixed-top {
 /* Pages
 **=====================================*/
 
-.bck-top-btn {
+#bck-top-btn {
     .simple-btn(@primary-color, @font-color-light);
     position: fixed; bottom: 20px; right: 20px; z-index: 99; text-align: center; padding: 0;
     border-radius: 50%; font-size: 30px; line-height: 50px; height: 50px; width: 50px;
+    display: none; .simple-transition();
 }
 
 .post-title {
@@ -335,6 +337,14 @@ body.admin-bar .navbar.fixed-top {
     }
 }
 
+    // Loop post
+.dezo-loop-post {
+    .card-img-top {
+        .simple-transition(600ms);
+        &:hover { opacity: 0.7; }
+    }
+}
+
     // comments
 .comments {
     ul {
@@ -342,7 +352,6 @@ body.admin-bar .navbar.fixed-top {
     }
 
     .comment {
-        padding-bottom: 15px; margin-bottom: 25px; border-bottom: 1px solid #ddd;
 
         .comment-heading {
             margin-bottom: 0;
@@ -350,6 +359,11 @@ body.admin-bar .navbar.fixed-top {
                 color: @font-color;
             }
         }
+
+        .comment-body {
+            border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;
+        }
+
         .comment-metadata {
             margin-bottom: 8px;
             a {

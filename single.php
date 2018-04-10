@@ -30,11 +30,13 @@
 			</main>
 		</div>
 	</div>
-	<div class="card card-mb" id="comments-section">
-		<div class="card-body">
-			<?php comments_template(); ?>
+	<?php if (comments_open()): ?>
+		<div class="card card-mb" id="comments-section">
+			<div class="card-body">
+				<?php comments_template(); ?>
+			</div>
 		</div>
-	</div>
+	<?php endif; ?>
 <?php endwhile; else: ?>
 
 	<h1><?php _e( 'Sorry, nothing to display.', 'dez-starter' ); ?></h1>

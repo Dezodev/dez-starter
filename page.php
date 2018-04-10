@@ -24,11 +24,13 @@
 			</main>
 		</div>
 	</div>
-	<div class="card card-mb" id="comments-section">
-		<div class="card-body">
-			<?php comments_template('', true); ?>
+	<?php if (comments_open()): ?>
+		<div class="card card-mb" id="comments-section">
+			<div class="card-body">
+				<?php comments_template('', true); ?>
+			</div>
 		</div>
-	</div>
+	<?php endif; ?>
 <?php
 endwhile; else:
 	echo '<h1>'. _e( 'Sorry, nothing to display.', 'dez-starter' ) . '</h1>';

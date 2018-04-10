@@ -28,14 +28,10 @@ $comm_args = [
 				'type' 			=> 'comment',
 				'callback' 		=> 'dezo_comments',
 				'style'       	=> 'ul',
-		        'short_ping'  	=> true,
-		        'avatar_size' 	=> 64,
+				'short_ping'  	=> true,
+				'avatar_size' 	=> 64,
 			]); ?>
 		</ul><!-- .comment-list -->
-
-	<?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-
-		<p><?php _e( 'Comments are closed here.', 'dez-starter' ); ?></p>
 
 	<?php endif; ?>
 

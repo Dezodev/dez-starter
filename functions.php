@@ -264,38 +264,38 @@ add_filter('comment_form_default_fields', 'dezo_comment_default_fields');
 function dezo_comments( $comment, $args, $depth ) {
     $tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
 ?>
-    <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $args['has_children'] ? 'parent row' : 'row' ); ?>>
-
-        <?php if ( 0 != $args['avatar_size'] ): ?>
-        <div class="comment-left col-auto mr-3 pr-0">
-            <a href="<?php echo get_comment_author_url(); ?>" class="comment-avatar">
-                <?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
-            </a>
-        </div>
-        <?php endif; ?>
-
-        <div class="comment-body col" id="div-comment-<?php comment_ID(); ?>">
-
-            <?php printf( '<h4 class="comment-heading mt-0">%s</h4>', get_comment_author_link() ); ?>
-
-            <div class="comment-metadata">
-                <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>" class="smooth-scroll">
-                    <time datetime="<?php comment_time( 'c' ); ?>"> <?php echo get_comment_date(). ' ' .get_comment_time(); ?> </time>
-                </a>
-            </div><!-- .comment-metadata -->
-
-            <?php if ( '0' == $comment->comment_approved ) : ?>
-            <p class="comment-awaiting-moderation label label-info"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
+    <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $args['has_children'] ? 'parent' : '' ); ?>>
+        <article class="comment-body d-flex" id="div-comment-<?php comment_ID(); ?>">
+            <?php if ( 0 != $args['avatar_size'] ): ?>
+                <div class="comment-left col-auto">
+                    <a href="<?php echo get_comment_author_url(); ?>" class="comment-avatar">
+                        <?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
+                    </a>
+                </div>
             <?php endif; ?>
 
-            <div class="comment-content">
-                <?php comment_text(); ?>
-            </div><!-- .comment-content -->
+            <div class="comment-text col">
 
-            <ul class="list-inline text-right">
-                <?php edit_comment_link( __( 'Edit' ), '<li class="list-inline-item edit-link">', '</li>' ); ?>
+                <?php printf( '<h4 class="comment-heading mt-0">%s</h4>', get_comment_author_link() ); ?>
 
-                <?php
+                <div class="comment-metadata">
+                    <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>" class="smooth-scroll">
+                        <time datetime="<?php comment_time( 'c' ); ?>"> <?php echo get_comment_date(). ' ' .get_comment_time(); ?> </time>
+                    </a>
+                </div><!-- .comment-metadata -->
+
+                <?php if ( '0' == $comment->comment_approved ) : ?>
+                    <p class="comment-awaiting-moderation label label-info"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
+                <?php endif; ?>
+
+                <div class="comment-content">
+                    <?php comment_text(); ?>
+                </div><!-- .comment-content -->
+
+                <ul class="list-inline text-right">
+                    <?php edit_comment_link( __( 'Edit' ), '<li class="list-inline-item edit-link">', '</li>' ); ?>
+
+                    <?php
                     comment_reply_link( array_merge( $args, array(
                         'add_below' => 'div-comment',
                         'depth'     => $depth,
@@ -303,11 +303,13 @@ function dezo_comments( $comment, $args, $depth ) {
                         'before'    => '<li class="list-inline-item reply-link">',
                         'after'     => '</li>'
                     ) ) );
-                ?>
+                    ?>
 
-            </ul>
+                </ul>
 
-        </div>
+            </div>
+
+        </article>
 <?php
 }
 
@@ -319,6 +321,13 @@ function remove_category_rel_from_category_list($thelist) {
     return str_replace('rel="category tag"', 'rel="tag"', $thelist);
 }
 add_filter('the_category', 'remove_category_rel_from_category_list');
+
+// Remove hard coded thumbnails dimensions
+function remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
+    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+    return $html;
+}
+add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3 );
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
