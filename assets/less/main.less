@@ -47,12 +47,14 @@ img { max-width: 100%; }
 .card.card-mb { margin-bottom: 15px; }
 
 /* Font */
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 { color: @font-color; margin-bottom: 10px; }
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 { color: @font-color; margin-bottom: 10px; font-weight: 500; }
 h1, .h1 { font-size: 34px; }
 h2, .h2 { font-size: 28px; }
 h3, .h3 { font-size: 23px; }
 h4, .h4 { font-size: 17px; }
 h5, .h5 { font-size: 16px; text-decoration: underline; }
+
+strong, b { font-weight: 600; }
 
 a {
     color: @link-color;
@@ -266,7 +268,7 @@ dl, ol, ul {
 
     #header-image {
         margin-top: 57px; height: 350px; overflow: hidden; background-position: center;
-        background-size: cover;
+        background-size: cover; background-color: #dfdfdf;
     }
 
     #navbar-content { flex-grow: inherit; }
