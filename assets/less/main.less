@@ -355,6 +355,11 @@ body.admin-bar .navbar.fixed-top {
 
     .comment {
 
+        border-top: 1px solid #ddd;
+        &:first-of-type {
+            border-top: none;
+        }
+
         .comment-heading {
             margin-bottom: 0;
             a {
@@ -363,7 +368,7 @@ body.admin-bar .navbar.fixed-top {
         }
 
         .comment-body {
-            border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;
+            padding-top: 25px; padding-bottom: 25px;
         }
 
         .comment-metadata {
@@ -388,10 +393,13 @@ body.admin-bar .navbar.fixed-top {
             position: relative;
             width: 100%;
             min-height: 1px;
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-top: 20px;
-            padding-left: 110px;
+            padding-right: 0;
+            padding-left: 0;
+            margin-top: 0;
+            & > li {
+                padding-left: 95px;
+            }
+            &:first-of-type { border-top: 1px solid #ddd; }
         }
 
         #respond {
