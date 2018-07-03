@@ -2,7 +2,7 @@
 
 // Comment args
 $comm_args = [
-	'comment_field'		=> '<div class="form-group comment-form-comment"><label for="comment">' . _x( 'Comment', 'dez-starter' ) . '</label><textarea id="comment" class="form-control" name="comment" rows="8" aria-required="true"></textarea></div>',
+	'comment_field'		=> '<div class="form-group comment-form-comment"><label for="comment">' . __('Comment', 'dez-starter') . '</label><textarea id="comment" class="form-control" name="comment" rows="8" aria-required="true"></textarea></div>',
 	'label_submit'		=> __('Send', 'dez-starter'),
 	'title_reply'		=> __('Add comment', 'dez-starter'),
 ];

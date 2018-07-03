@@ -1,7 +1,7 @@
 {
   "name": "dez-starter",
   "version": "0.0.1",
-  "description": "",
+  "description": "Wordpress theme starter with bootstrap 4",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/Dezodev/dez-starter#readme",
   "dependencies": {
-    "smooth-scroll": "^12.1.5"
+    "bootstrap": "^4.1.1",
+    "feather-icons": "^4.7.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "smooth-scroll": "^14.2.0"
   },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-wp-pot": "^2.2.0"
-  }
+  "devDependencies": {}
 }

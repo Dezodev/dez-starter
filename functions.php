@@ -25,9 +25,6 @@ if (function_exists('add_theme_support')) {
     add_image_size('small', 150, 150, true); // Small Thumbnail
 
     // Site header image
-    /**
-     * Photo by Matteo Catanese on Unsplash
-     */
     $args = array(
     	'width'         => 2540,
     	'height'        => 350,
@@ -45,39 +42,94 @@ if (function_exists('add_theme_support')) {
 
 /* Scripts & styles
 **=====================================*/
+function theme_scripts() {
 
-function dez_custom_scripts() {
-    wp_register_script('dez-jquery-script', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', false, null, true);
-    wp_enqueue_script('dez-jquery-script');
+	$templ_dir = get_bloginfo('template_url');
+	$templ_ver = '0.0.1';
 
-    wp_register_script('dez-popper-script', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', array('dez-jquery-script'), null, true);
-    wp_enqueue_script('dez-popper-script');
 
-    wp_register_script('dez-bootstrap4-script', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js', array('dez-jquery-script', 'dez-popper-script'), null, true);
-    wp_enqueue_script('dez-bootstrap4-script');
+	/* -- CSS -- */
+	$css_includes = [
+		[
+			'name'          => 'dez-bootstrap-style',
+			'url'           => $templ_dir. '/node_modules/bootstrap/dist/css/bootstrap.min.css',
+			'dependencies'  => false,
+			'version'       => '4.1.1',
+			'media'         => 'all'
+		],
+		[
+			'name'          => 'dez-fontawesome-style',
+			'url'           => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+			'dependencies'  => false,
+			'version'       => '4.7.0',
+			'media'         => 'all'
+		],
+		[
+			'name'          => 'dez-theme-style',
+			'url'           => $templ_dir. '/assets/css/main.css',
+			'dependencies'  => false,
+			'version'       => time(),
+			'media'         => 'all'
+		],
+	];
 
-    wp_register_script('dez-feather-icons', 'https://unpkg.com/feather-icons/dist/feather.min.js', false, null, true);
-    wp_enqueue_script('dez-feather-icons');
+	foreach ($css_includes as $css_include) {
+		wp_register_style( $css_include['name'], $css_include['url'], $css_include['dependencies'], $css_include['version'], $css_include['media'] );
+		wp_enqueue_style( $css_include['name'] );
+	}
 
-    wp_register_script('dez-smooth-scroll-script', get_bloginfo('template_url') . '/node_modules/smooth-scroll/dist/js/smooth-scroll.min.js', false, null, true);
-    wp_enqueue_script('dez-smooth-scroll-script');
+	/* -- JS -- */
+	$js_includes = [
+		[
+			'name'          => 'jquery',
+			'url'           => $templ_dir.'/node_modules/jquery/dist/jquery.min.js',
+			'dependencies'  => false,
+			'version'       => '3.3.1',
+			'inFooter'      => true
+		],
+		[
+			'name'          => 'dez-popper-script',
+			'url'           => $templ_dir.'/node_modules/popper.js/dist/umd/popper.min.js',
+			'dependencies'  => array('jquery'),
+			'version'       => '1.14.3',
+			'inFooter'      => true
+		],
+		[
+			'name'          => 'dez-bootstrap-script',
+			'url'           => $templ_dir.'/node_modules/bootstrap/dist/js/bootstrap.min.js',
+			'dependencies'  => array('jquery', 'dez-popper-script'),
+			'version'       => '4.1.1',
+			'inFooter'      => true
+		],
+		[
+			'name'          => 'dez-feather-icons',
+			'url'           => $templ_dir.'/node_modules/feather-icons/dist/feather.min.js',
+			'dependencies'  => false,
+			'version'       => '4.7.3',
+			'inFooter'      => true
+		],
+		[
+			'name'          => 'dez-smooth-scroll-script',
+			'url'           => $templ_dir.'/node_modules/smooth-scroll/dist/js/smooth-scroll.min.js',
+			'dependencies'  => false,
+			'version'       => '14.2.0',
+			'inFooter'      => true
+		],
+		[
+			'name'          => 'dez-theme-script',
+			'url'           => $templ_dir.'/assets/js/main.min.js',
+			'dependencies'  => array('jquery', 'dez-popper-script', 'dez-bootstrap-script', 'dez-smooth-scroll-script'),
+			'version'       => time(),
+			'inFooter'      => true
+		],
+	];
 
-    wp_register_script('dez-theme-script', get_bloginfo('template_url') . '/assets/js/main.min.js', array('dez-jquery-script', 'dez-popper-script', 'dez-bootstrap4-script', 'dez-smooth-scroll-script'), '0.0.1', true);
-    wp_enqueue_script('dez-theme-script');
+	foreach ($js_includes as $js_include) {
+		wp_register_script( $js_include['name'], $js_include['url'], $js_include['dependencies'], $js_include['version'], $js_include['inFooter'] );
+		wp_enqueue_script( $js_include['name'] );
+	}
 }
-add_action('wp_enqueue_scripts', 'dez_custom_scripts');
-
-function dez_custom_styles() {
-    wp_register_style('dez-bootstrap-style', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css', false, null, 'all');
-    wp_enqueue_style('dez-bootstrap-style');
-
-    wp_register_style('dez-fontawesome-style', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, null, 'all');
-    wp_enqueue_style('dez-fontawesome-style');
-
-    wp_register_style('dez-theme-style', get_bloginfo('template_url') . '/assets/css/main.css', array('dez-bootstrap-style'), '0.0.1');
-    wp_enqueue_style('dez-theme-style');
-}
-add_action('wp_enqueue_scripts', 'dez_custom_styles');
+add_action( 'wp_enqueue_scripts', 'theme_scripts' );
 
 /* Functions
 **=====================================*/
@@ -285,7 +337,7 @@ function dezo_comments( $comment, $args, $depth ) {
                 </div><!-- .comment-metadata -->
 
                 <?php if ( '0' == $comment->comment_approved ) : ?>
-                    <p class="comment-awaiting-moderation label label-info"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
+                    <p class="comment-awaiting-moderation label label-info"><?php _e('Your comment is awaiting moderation.', 'dez-starter'); ?></p>
                 <?php endif; ?>
 
                 <div class="comment-content">
@@ -293,7 +345,7 @@ function dezo_comments( $comment, $args, $depth ) {
                 </div><!-- .comment-content -->
 
                 <ul class="list-inline text-right">
-                    <?php edit_comment_link( __( 'Edit' ), '<li class="list-inline-item edit-link">', '</li>' ); ?>
+                    <?php edit_comment_link( __('Edit', 'dez-starter'), '<li class="list-inline-item edit-link">', '</li>' ); ?>
 
                     <?php
                     comment_reply_link( array_merge( $args, array(
