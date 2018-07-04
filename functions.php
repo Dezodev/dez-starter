@@ -14,31 +14,43 @@ if (!isset($content_width)) {
     $content_width = 900;
 }
 
-if (function_exists('add_theme_support')) {
-    // Add Menu Support
-    add_theme_support('menus');
 
-    // Add Thumbnail Theme Support
-    add_theme_support('post-thumbnails');
-    add_image_size('large', 750, 322, true); // Large Thumbnail
-    add_image_size('medium', 250, 188, true); // Medium Thumbnail
-    add_image_size('small', 150, 150, true); // Small Thumbnail
+function dezo_setup() {
+    if (function_exists('add_theme_support')) {
+        // Add Menu Support
+        add_theme_support('menus');
 
-    // Site header image
-    $args = array(
-    	'width'         => 2540,
-    	'height'        => 350,
-    	'default-image' => get_template_directory_uri() . '/images/header.jpg',
-        'uploads'       => true,
-    );
-    add_theme_support( 'custom-header', $args );
+        // Add Thumbnail Theme Support
+        add_theme_support('post-thumbnails');
+        add_image_size('large', 750, 322, true); // Large Thumbnail
+        add_image_size('medium', 250, 188, true); // Medium Thumbnail
+        add_image_size('small', 150, 150, true); // Small Thumbnail
 
-    // Comments
-    add_theme_support('html5', ['comment-list']);
+        // Site header image
+        add_theme_support('custom-header', [
+            'width'         => 2540,
+            'height'        => 350,
+            'default-image' => get_template_directory_uri() . '/images/header.jpg',
+            'uploads'       => true,
+        ]);
 
-    // Localisation Support
-    load_theme_textdomain('dez-starter', get_template_directory() . '/languages');
+        // Comments
+        add_theme_support('html5', ['comment-list']);
+
+        // Custom logo
+        add_theme_support('custom-logo', array(
+            'height'      => 70,
+            'width'       => 300,
+            'flex-width' => true,
+        ));
+
+        // Localisation Support
+        load_theme_textdomain('dez-starter', get_template_directory() . '/languages');
+    }
+
+
 }
+add_action( 'after_setup_theme', 'dezo_setup' );
 
 /* Scripts & styles
 **=====================================*/
@@ -81,7 +93,7 @@ function theme_scripts() {
 	/* -- JS -- */
 	$js_includes = [
 		[
-			'name'          => 'jquery',
+			'name'          => 'dez-jquery-script',
 			'url'           => $templ_dir.'/node_modules/jquery/dist/jquery.min.js',
 			'dependencies'  => false,
 			'version'       => '3.3.1',
@@ -110,7 +122,7 @@ function theme_scripts() {
 		],
 		[
 			'name'          => 'dez-smooth-scroll-script',
-			'url'           => $templ_dir.'/node_modules/smooth-scroll/dist/js/smooth-scroll.min.js',
+			'url'           => $templ_dir.'/node_modules/smooth-scroll/dist/smooth-scroll.min.js',
 			'dependencies'  => false,
 			'version'       => '14.2.0',
 			'inFooter'      => true

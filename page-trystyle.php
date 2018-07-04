@@ -9,6 +9,11 @@ $DEZ_no_sidebar = true;
 get_header(); ?>
 
 <div class="card">
+	<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
+		<?php the_post_thumbnail('large', [
+			'class' => 'card-img-top',
+		]); ?>
+	<?php endif; ?>
 	<div class="card-body">
 		<main role="main">
             <?php while (have_posts()) : the_post(); ?>

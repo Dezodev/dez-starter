@@ -1,7 +1,16 @@
+<?php
+$blog_name = get_bloginfo('name');
+$blog_description = get_bloginfo('description');
+
+if (has_custom_logo()){
+	$GLOBALS['addBodyClass'][] = 'header-logo';
+}
+?>
+
 <!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
-	<title><?php wp_title(); ?></title>
+	<title><?php echo $blog_name; ?><?php wp_title('-'); ?></title>
 	<meta charset="<?php bloginfo('charset'); ?>">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -31,8 +40,16 @@
 		<nav class="navbar fixed-top navbar-expand-lg navbar-light">
 			<div class="container">
 
-				<a class="navbar-brand mr-auto" href="<?php echo home_url(); ?>">
-					<?php bloginfo('name') ?>
+				<a class="navbar-brand mr-auto <?php if(has_custom_logo()) echo 'navbar-brand-logo' ?>" href="<?php echo home_url(); ?>">
+					<?php
+						if (has_custom_logo()){
+							$custom_logo_id = get_theme_mod( 'custom_logo' );
+							$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+							echo '<img src="'. esc_url( $logo[0] ) .'" alt="'. $blog_name .' - '. $blog_description .'">';
+						} else {
+							echo $blog_name;
+						}
+					?>
 				</a>
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">

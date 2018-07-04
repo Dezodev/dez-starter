@@ -12,12 +12,12 @@
 				</div>
 			</div>
 		</div>
-		<div id="footer-mentions">
+		<div id="footer-sub">
 			<div class="container">
 				<div class="row">
 					<div class="col">
 						<p class="copyright">
-							&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.
+							&copy; <?php echo date('Y'); ?> <a href="#"><?php bloginfo('name'); ?> - <?php bloginfo('description'); ?></a>
 						</p>
 					</div>
 					<div class="col-sm-auto">
